@@ -1,3 +1,2 @@
-# My Cloud
-
-A self hosted cloud alternative to the big boys.
+# Stord.
+A selfhosted media manager as an alternative to the big boys.
