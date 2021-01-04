@@ -1,67 +1,21 @@
-import image from "../assets/gridone.jpg";
+import { useState } from "react";
+import SubGridByDate from "./SubGridByDate";
 
 const ImageGrid = () => {
-  return (
-    <div className="image-container">
-      <div className="collection">
-        <div>
-          <p>January</p>
-        </div>
-        <div className="image-grid">
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-        </div>
-      </div>
+    const [imagePreview, setimagePreview] = useState([
+        { imageUrl: "../assets/gridone.jpg", date: "January", id: 1 },
+        { imageUrl: "../assets/gridone.jpg", date: "January", id: 2 },
+        { imageUrl: "../assets/gridone.jpg", date: "January", id: 3 },
+        { imageUrl: "../assets/gridone.jpg", date: "January", id: 4 },
+        { imageUrl: "../assets/gridone.jpg", date: "January", id: 5 },
 
-      <div className="collection">
-        <div>
-          <p>December</p>
-        </div>
+    ]);
+
+    return (
         <div className="image-grid">
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
-          <div className="grid-item">
-            <img src={image} alt="grid"></img>
-          </div>
+            <SubGridByDate imagePreview={imagePreview}/>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ImageGrid;

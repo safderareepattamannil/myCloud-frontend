@@ -17,7 +17,6 @@ body{
   border-radius: 30px;
   margin-top: 25px;
   background-color: white;
-  color:white;
 }
 
 .container h1{
@@ -55,8 +54,6 @@ body{
 
 
 .image-grid{
-  display: flex;
-  flex-wrap: wrap;
   padding: 0px 60px;
 }
 
@@ -70,8 +67,6 @@ body{
   background-image: linear-gradient(to right,#4A26E9, #6A0EBB);
 }
 
-.grid-item{
-}
 
 .grid-item:hover{
   opacity: 70%;
@@ -81,4 +76,18 @@ body{
   color: #B7B7B7;
   font-size: 18px;
   margin: 20px 0 5px 60px;
+}
+
+.image-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;  
+}
+
+.grid-item{
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 10px 10px;
+ 
 }
