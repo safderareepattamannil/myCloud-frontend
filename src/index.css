@@ -32,6 +32,9 @@ body{
   padding: 100px 40px 0 60px;
 }
 
+.hidden{
+  display:none;
+}
 
 .search{
   margin-right: auto;
@@ -62,6 +65,7 @@ body{
   border-radius: 20px;
   line-height: 20px;
   background-image: linear-gradient(to right,#4A26E9, #6A0EBB);
+
 }
 
 

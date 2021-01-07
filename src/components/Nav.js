@@ -13,7 +13,6 @@ export default function Nav() {
             filesSelected.push(e.target.files[i]);
         }
         setSelectedFiles([...filesSelected]);
-
     }
 
     const uploadFiles = () =>{
@@ -34,7 +33,10 @@ export default function Nav() {
             <div className="search">
                 <input type="text" placeholder="Search"/>
             </div>
-            <input type="file" onChange={handleFileSelect} multiple/>
+            <label htmlFor="upload-button">
+                <p class="add-photos-button">Add Photos</p>
+            </label>
+            <input class="hidden" id="upload-button" type="file" onChange={handleFileSelect} multiple/>
             <button onClick={uploadFiles}>Upload</button>
         </div>
         );
