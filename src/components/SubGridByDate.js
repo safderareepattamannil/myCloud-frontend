@@ -1,5 +1,4 @@
 const SubGridByDate = ({imagePreview}) => {
-    console.log(imagePreview);
     return (
         <div className="image-container">
             {imagePreview.map((image) => (

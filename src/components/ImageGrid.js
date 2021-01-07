@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import SubGridByDate from "./SubGridByDate";
 
 const ImageGrid = () => {
-    const [imagePreview, setimagePreview] = useState([
-        { imageUrl: "../assets/gridone.jpg", date: "January", id: 1 },
-        { imageUrl: "../assets/gridone.jpg", date: "January", id: 2 },
-        { imageUrl: "../assets/gridone.jpg", date: "January", id: 3 },
-        { imageUrl: "../assets/gridone.jpg", date: "January", id: 4 },
-        { imageUrl: "../assets/gridone.jpg", date: "January", id: 5 },
-
-    ]);
+    const [imagePreview, setImagePreview] = useState([]);
+    useEffect(() => {
+        axios.get("http://localhost:8342/getfiles").then((res) => {
+            const fileNames = res.data;
+            const previewInfo = [];
+            const baseUrl = "http://localhost:8342/uploads/";
+            fileNames.forEach((file) => {
+                previewInfo.push({
+                    imageUrl: baseUrl + file,
+                    id: imagePreview[0] ? imagePreview[0].id + 1 : 0,
+                });
+            });
+            setImagePreview([...previewInfo]);
+        });
+    }, []);
 
     return (
         <div className="image-grid">
-            <SubGridByDate imagePreview={imagePreview}/>
+            <SubGridByDate imagePreview={imagePreview} />
         </div>
     );
 };
