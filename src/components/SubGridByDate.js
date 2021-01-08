@@ -17,18 +17,28 @@ const SubGridByDate = ({ imagePreview }) => {
     };
 
     // Popup Modal for Multiselect
+
+    const unselectAll = () => {
+        setSelectedImages([]);
+    };
+
     const renderSelectModal = () => {
         if (selectedImages.length > 0) {
-            return <SelectModal selectedItems={selectedImages.length}/>;
+            return (
+                <SelectModal
+                    selectedItems={selectedImages.length}
+                    unselectAll={unselectAll}
+                />
+            );
         }
     };
 
     return (
         <div className="grid-box">
             {renderSelectModal()}
-            <div className="image-container">
+            <ul className="image-container">
                 {imagePreview.map((image) => (
-                    <div className="grid-item" key={image.id}>
+                    <li className="grid-item" key={image.id}>
                         <img
                             src={image.imageUrl}
                             className={
@@ -39,9 +49,9 @@ const SubGridByDate = ({ imagePreview }) => {
                             onClick={() => handleSelect(image.id)}
                             alt="img"
                         />
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };
