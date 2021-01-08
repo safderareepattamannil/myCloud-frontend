@@ -3,6 +3,7 @@ import ImageGrid from "./components/ImageGrid";
 import Nav from "./components/Nav";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { SRLWrapper } from "simple-react-lightbox";
 
 function App() {
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -52,6 +53,7 @@ function App() {
             setImagePreview([...previewInfo]);
         });
     }, [renderGrid]);
+
 
     return (
         <div className="App">

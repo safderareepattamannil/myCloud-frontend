@@ -1,7 +1,15 @@
 import { useState } from "react";
+import PopupModal from "./PopupModal";
 import SelectModal from "./SelectModal";
 
 const SubGridByDate = ({ imagePreview }) => {
+    // Handle double click select
+    const [doubleSelect, setDoubleSelect] = useState(-1);
+    const handleDoubleClick = (id) => {
+        console.log("double click");
+        setDoubleSelect(id);
+        console.log(doubleSelect);
+    };
     // Handle multi-selecting
     const [selectedImages, setSelectedImages] = useState([]);
     const handleSelect = (id) => {
@@ -23,7 +31,7 @@ const SubGridByDate = ({ imagePreview }) => {
     };
 
     const renderSelectModal = () => {
-        if (selectedImages.length > 0) {
+        if (selectedImages.length > 1) {
             return (
                 <SelectModal
                     selectedItems={selectedImages.length}
@@ -33,9 +41,18 @@ const SubGridByDate = ({ imagePreview }) => {
         }
     };
 
+    const renderPopupModal = () => {
+        if (doubleSelect) {
+            return <PopupModal id={doubleSelect} imagePreview={imagePreview} />;
+        }
+    };
+
     return (
         <div className="grid-box">
+            {renderPopupModal()}
             {renderSelectModal()}
+
+
             <ul className="image-container">
                 {imagePreview.map((image) => (
                     <li className="grid-item" key={image.id}>
@@ -47,6 +64,7 @@ const SubGridByDate = ({ imagePreview }) => {
                                     : "nothing"
                             }
                             onClick={() => handleSelect(image.id)}
+                            onDoubleClick={() => handleDoubleClick(image.id)}
                             alt="img"
                         />
                     </li>

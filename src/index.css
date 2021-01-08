@@ -121,3 +121,15 @@ ul{
 .unselect-button{
     font-size: 1.5em;
 }
+
+
+
+.popup-modal img{
+    width: 1080px;
+    height: auto;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
