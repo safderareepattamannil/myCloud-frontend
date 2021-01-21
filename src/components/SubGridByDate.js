@@ -4,24 +4,25 @@ import SelectModal from "./SelectModal";
 
 const SubGridByDate = ({ imagePreview }) => {
     // Handle double click select
-    const [doubleSelect, setDoubleSelect] = useState(-1);
-    const handleDoubleClick = (id) => {
-        console.log("double click");
-        setDoubleSelect(id);
-        console.log(doubleSelect);
+    const [selectedImageId, setSelectedImageId] = useState(-1);
+    const [toggleModal, setToggleModal] = useState(false);
+
+    const duringPopUp = toggleModal ? "during-popup" : "";
+
+    const handleModalPopupOnClick = (id) => {
+        setSelectedImageId(id);
+        setToggleModal(true);
     };
     // Handle multi-selecting
     const [selectedImages, setSelectedImages] = useState([]);
+
     const handleSelect = (id) => {
         if (selectedImages.includes(id)) {
-            console.log("here");
             let filtered = selectedImages.filter((uuid) => uuid !== id);
             setSelectedImages([...filtered]);
         } else {
             setSelectedImages([...selectedImages, id]);
         }
-        console.log(id);
-        console.log(selectedImages);
     };
 
     // Popup Modal for Multiselect
@@ -30,27 +31,10 @@ const SubGridByDate = ({ imagePreview }) => {
         setSelectedImages([]);
     };
 
-    const renderSelectModal = () => {
-        if (selectedImages.length > 1) {
-            return (
-                <SelectModal
-                    selectedItems={selectedImages.length}
-                    unselectAll={unselectAll}
-                />
-            );
-        }
-    };
-
-    const renderPopupModal = () => {
-        if (doubleSelect) {
-            return <PopupModal id={doubleSelect} imagePreview={imagePreview} />;
-        }
-    };
-
     return (
         <div className="grid-box">
-            {renderPopupModal()}
-            {renderSelectModal()}
+            {toggleModal &&  <PopupModal id={selectedImageId} imagePreview={imagePreview} onDoubleClick={() => setToggleModal(false)}/>}
+            {selectedImages.length > 1 && <SelectModal selectedItems={selectedImages.length} unselectAll={unselectAll}/>}
 
 
             <ul className="image-container">
@@ -64,7 +48,7 @@ const SubGridByDate = ({ imagePreview }) => {
                                     : "nothing"
                             }
                             onClick={() => handleSelect(image.id)}
-                            onDoubleClick={() => handleDoubleClick(image.id)}
+                            onDoubleClick={() => handleModalPopupOnClick(image.id)}
                             alt="img"
                         />
                     </li>
